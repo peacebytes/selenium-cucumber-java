@@ -3,8 +3,8 @@
 This repository is an example of using selenium-cucumber-java to do automated functional test of web application.
 
 	• Based on: selenium-cucumber-java - web application BDD test
-  • Website: automationpractice.com
-
+	• Website: automationpractice.com
+  
 ## How do I get set up?
 
 **Install JVM**
@@ -14,10 +14,10 @@ This repository is an example of using selenium-cucumber-java to do automated fu
 ## How do I execute test?
 
 1. Run Test
-	```
-  mvn clean install
-  ```
+```
+mvn clean install
+```
 2. Compile code without execute test
-  ```
-  mvn clean install -DskipTests=true
-  ```
+```
+mvn clean install -DskipTests=true
+```
