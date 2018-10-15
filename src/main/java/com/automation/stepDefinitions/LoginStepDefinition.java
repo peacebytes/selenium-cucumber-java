@@ -1,7 +1,7 @@
-package com.shopback.stepDefinitions;
+package com.automation.stepDefinitions;
 
-import com.shopback.pageObjects.BasePage;
-import com.shopback.pageObjects.LoginPage;
+import com.automation.pageObjects.BasePage;
+import com.automation.pageObjects.LoginPage;
 import cucumber.api.java.en.Given;
 
 public class LoginStepDefinition {

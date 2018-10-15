@@ -1,7 +1,7 @@
-package com.shopback.utils;
+package com.automation.utils;
 
-import com.shopback.env.DriverFactory;
-import com.shopback.stepDefinitions.Hooks;
+import com.automation.env.DriverFactory;
+import com.automation.stepDefinitions.Hooks;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;

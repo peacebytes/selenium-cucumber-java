@@ -1,7 +1,7 @@
-package com.shopback.pageObjects;
+package com.automation.pageObjects;
 
-import com.shopback.stepDefinitions.Hooks;
-import com.shopback.utils.SeleniumUtils;
+import com.automation.stepDefinitions.Hooks;
+import com.automation.utils.SeleniumUtils;
 
 public class BasePage {
 

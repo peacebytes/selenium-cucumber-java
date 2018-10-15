@@ -1,6 +1,6 @@
-package com.shopback.stepDefinitions;
+package com.automation.stepDefinitions;
 
-import com.shopback.env.DriverFactory;
+import com.automation.env.DriverFactory;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import java.net.MalformedURLException;
-import com.shopback.utils.PropertyReader;
+import com.automation.utils.PropertyReader;
 
 public class Hooks {
 

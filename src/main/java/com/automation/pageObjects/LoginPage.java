@@ -1,7 +1,7 @@
-package com.shopback.pageObjects;
+package com.automation.pageObjects;
 
 import org.openqa.selenium.WebElement;
-import com.shopback.utils.SeleniumUtils;
+import com.automation.utils.SeleniumUtils;
 
 public class LoginPage {
 
