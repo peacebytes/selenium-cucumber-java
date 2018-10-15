@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "classpath:features",
         format ={"pretty",
-                "html:target\\cucumber\\cucumber.html", "json:target\\cucumber\\cucumber.json"},
+                "html:target/cucumber/cucumber.html", "json:target/cucumber/cucumber.json"},
         glue = "com.automation.stepDefinitions",
         strict = true)
 public class RunCukeTest {
