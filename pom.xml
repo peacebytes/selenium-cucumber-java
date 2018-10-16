@@ -59,6 +59,12 @@
             <version>1.1</version>
         </dependency>
     </dependencies>
+
+    <properties>
+      <target.browser>${targetBrowser}</target.browser>
+      <target.env>${targetEnv}</target.env>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
