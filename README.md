@@ -2,31 +2,58 @@
 
 This repository is an example of using selenium-cucumber-java to do automated functional test of web application.
 
-	• Based on: selenium-cucumber-java - web application BDD test
+	• Based on: selenium-cucumber-java; web application BDD test
 	• Website: automationpractice.com
 
 ## How do I get set up?
 
-**Install JVM**
-**Setup Maven**
-**Setup WebDrivers**
+Google for:
 
-## How do I execute test?
+*Install JVM*
 
-1. Run All Test (default.browser=chrome & default.env=local)
+*Setup Maven*
+
+*Setup WebDrivers*
+
+## How do I execute test on local?
+
+Run All Test (default.browser=chrome & default.env=local)
 ```
 mvn clean install
 ```
-2. Compile code without execute test
+Compile code without execute test
 ```
 mvn clean install -DskipTests=true
 ```
-3. Run specific test features (default.browser=chrome & default.env=local)
+Run specific test features (default.browser=chrome & default.env=local)
 Put `@wip` on top of feature file, then:
 ```
 mvn test -Dcucumber.options='--tags @wip'
 ```
-4. Execute test against specific browser and env
+Execute test against specific browser and env
 ```
 mvn test -Dtarget.browser=firefox -Dtarget.env=local
 ```
+
+## How do I execute test on Browserstack?
+
+Test on IE
+```
+mvn test -Dtarget.env=bs -Dtarget.browser=ie
+```
+
+Test on Edge
+```
+mvn test -Dtarget.env=bs -Dtarget.browser=edge
+```
+
+Test on Chrome
+```
+mvn test -Dtarget.env=bs -Dtarget.browser=chrome
+```
+
+Test on Firefox
+```
+mvn test -Dtarget.env=bs -Dtarget.browser=chrome
+```
+* Note: All test on Browserstack will be done on Windows 10.

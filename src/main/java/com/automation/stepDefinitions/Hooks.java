@@ -38,7 +38,6 @@ public class Hooks {
         email = PropertyReader.readConfigProperties("email");
         password = PropertyReader.readConfigProperties("password");
         url = PropertyReader.readConfigProperties("url");
-        env = PropertyReader.readConfigProperties("default.env");
 
         System.out.println("url: " + url);
         System.out.println("email: " + email);
