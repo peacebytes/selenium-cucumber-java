@@ -2,7 +2,7 @@
 
 This repository is an example of using selenium-cucumber-java to do automated functional test of web application.
 
-	• Based on: selenium-cucumber-java; web application BDD test
+	• Based on: selenium-cucumber-java
 	• Website: automationpractice.com
 
 ## How do I get set up?
@@ -57,3 +57,9 @@ Test on Firefox
 mvn test -Dtarget.env=bs -Dtarget.browser=chrome
 ```
 * Note: All test on Browserstack will be done on Windows 10.
+
+Ref sources:
+```
+https://github.com/cigohere
+https://github.com/machzqcq
+```
