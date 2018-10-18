@@ -3,7 +3,7 @@ package com.automation.pageObjects;
 import org.openqa.selenium.WebElement;
 import com.automation.utils.SeleniumUtils;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
     public static WebElement loginEmailField = SeleniumUtils.getWebElement("id", "email");
     public static WebElement loginPasswordField = SeleniumUtils.getWebElement("id", "passwd");

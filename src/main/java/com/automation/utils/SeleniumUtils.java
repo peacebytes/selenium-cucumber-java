@@ -1,6 +1,5 @@
 package com.automation.utils;
 
-import com.automation.env.DriverFactory;
 import com.automation.stepDefinitions.Hooks;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;

@@ -17,7 +17,7 @@ Google for:
 
 ## How do I execute test on local?
 
-Run All Test (default.browser=chrome & default.env=local)
+Run All Test (default.browser=headless & default.env=local)
 ```
 mvn clean install
 ```

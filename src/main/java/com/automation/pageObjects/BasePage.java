@@ -5,8 +5,8 @@ import com.automation.utils.SeleniumUtils;
 
 public class BasePage {
 
-    public static void navigateToLoginPage() {
-        SeleniumUtils.navigateToURL(Hooks.url);
+    public static void navigateToPage(String expectedUrl) {
+        SeleniumUtils.navigateToURL(expectedUrl);
         try {
             Thread.sleep(500);
         } catch (Exception e) {}
