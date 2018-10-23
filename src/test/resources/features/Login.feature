@@ -4,3 +4,4 @@ Feature: Automation Practice Login Page
 
   Scenario: Login Automation Practice
     Given I have logged into Automation Practice
+    Then I log out Automation Practice

@@ -55,7 +55,8 @@ public class SeleniumUtils {
 
     public static WebElement waitWebElement(WebElement webElement)
     {
-        WebDriverWait Wait = new WebDriverWait(d, 120);
+        WebDriverWait Wait = new WebDriverWait(d, 1200);
+        ((JavascriptExecutor)d).executeScript("arguments[0].scrollIntoView();", webElement);
         return Wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }
