@@ -3,22 +3,37 @@ package com.automation.pageObjects;
 import org.openqa.selenium.WebElement;
 import com.automation.stepDefinitions.Hooks;
 import com.automation.utils.SeleniumUtils;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 
-public class BasePage {
+public abstract class BasePage {
 
-    /*
-    * Common WebElements that should be available to all Page Objects
-    * These WebElements are not always ready so they should be returned per request.
-    */
-    public static WebElement account() {return SeleniumUtils.getWebElement("css", "div.header_user_info > a.account");}
-    public static WebElement logout() {return SeleniumUtils.getWebElement("css", "div.header_user_info > a.logout");}
-    public static WebElement contact() {return SeleniumUtils.getWebElement("id", "contact-link");}
-    public static WebElement login() {return SeleniumUtils.getWebElement("css", "div.header_user_info > a.login");}
+    public static WebDriver driver;
+    public static boolean bResult;
 
-    public static void navigateToPage(String expectedUrl) {
-        SeleniumUtils.navigateToURL(expectedUrl);
-        try {
-            Thread.sleep(500);
-        } catch (Exception e) {}
+    public  BasePage(WebDriver driver){
+        BasePage.driver = driver;
+        BasePage.bResult = true;
     }
+
+     /*
+     * Common WebElements that should be available to all Page Objects
+     */
+
+    @FindBy(how=How.CSS, using="div.header_user_info > a.account")
+    public static WebElement accountElement;
+
+    @FindBy(how=How.CSS, using="div.header_user_info > a.logout")
+    public static WebElement logoutElement;
+
+    @FindBy(how=How.ID, using="contact-link")
+    public static WebElement contactElement;
+
+    @FindBy(how=How.CSS, using="div.header_user_info > a.login")
+    public static WebElement loginElement;
+
+    @FindBy(how=How.XPATH, using="//a[@title='Manage my customer account']")
+    public static WebElement myaccountElement;
 }

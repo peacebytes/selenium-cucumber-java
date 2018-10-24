@@ -32,7 +32,7 @@ mvn test -Dcucumber.options='--tags @wip'
 ```
 Execute test against specific browser and env
 ```
-mvn test -Dtarget.browser=firefox -Dtarget.env=local
+mvn test -Dtarget.browser=chrome -Dtarget.env=local
 ```
 
 ## How do I execute test on Browserstack?

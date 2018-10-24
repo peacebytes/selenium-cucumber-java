@@ -14,6 +14,7 @@ public class SeleniumUtils {
     {
         d.get(url);
     }
+
     public static void enterText(WebElement webElement, String textValue) {
         waitWebElement(webElement).sendKeys(textValue);
     }
@@ -58,5 +59,11 @@ public class SeleniumUtils {
         WebDriverWait Wait = new WebDriverWait(d, 1200);
         ((JavascriptExecutor)d).executeScript("arguments[0].scrollIntoView();", webElement);
         return Wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    public static String getTextWebElement(WebElement webElement)
+    {
+        waitWebElement(webElement);
+        return  webElement.getText();
     }
 }
