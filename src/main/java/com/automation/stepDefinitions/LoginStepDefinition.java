@@ -28,26 +28,4 @@ public class LoginStepDefinition {
         String actualTextalreadyRegistered = SeleniumUtils.getTextWebElement(LoginPage.alreadyRegistered);
         assertEquals(actualTextalreadyRegistered, "ALREADY REGISTERED?");
     }
-
-    @Then("I click My Account")
-    public void i_click_myaccount() {
-        PageFactory.initElements(Hooks.driver, MyAccount.class);
-        SeleniumUtils.clickElement(MyAccount.myaccountElement);
-        //assert i am at My Account
-        String actualTextmyaccountWelcome = SeleniumUtils.getTextWebElement(MyAccount.myaccountWelcome);
-        assert(actualTextmyaccountWelcome.contains("Welcome to your account"));
-    }
-
-    @And("I click on \"([^\"]*)\"")
-    public void i_click_on(String optionToClick) {
-        PageFactory.initElements(Hooks.driver, MyAccount.class);
-        for (WebElement webEle : MyAccount.myaccountLinkList) {
-            if (SeleniumUtils.getTextWebElement(webEle).toLowerCase().equals(optionToClick.toLowerCase())) {
-                SeleniumUtils.clickElement(webEle);
-                break;
-            }
-        }
-        //assert i clicked on expected option successfully
-        assert(optionToClick.toLowerCase().contains(SeleniumUtils.getTextWebElement(MyAccount.pageHeader).toLowerCase()));
-    }
 }
