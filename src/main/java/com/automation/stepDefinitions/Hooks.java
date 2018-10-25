@@ -8,9 +8,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import java.net.MalformedURLException;
 import com.automation.utils.PropertyReader;
 import com.google.common.base.Strings;
 
@@ -33,7 +30,7 @@ public class Hooks {
     /**
      * Delete all cookies at the start of each scenario to avoid shared state between tests
      */
-    public void openBrowser() throws MalformedURLException {
+    public void openBrowser() {
         //Loading config.properties
         email = PropertyReader.readConfigProperties("email");
         password = PropertyReader.readConfigProperties("password");
@@ -79,9 +76,12 @@ public class Hooks {
             } catch (WebDriverException somePlatformsDontSupportScreenshots) {
                 System.err.println(somePlatformsDontSupportScreenshots.getMessage());
             }
-
         }
-        driver.quit();
+        try {
+            driver.quit();
+        }catch(Exception ee){
+            System.err.println("Oops !!!!!!!!"+ee.getMessage());
+        }
 
     }
 }
