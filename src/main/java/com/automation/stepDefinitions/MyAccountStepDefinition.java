@@ -18,7 +18,7 @@ public class MyAccountStepDefinition {
         assert(actualTextmyaccountWelcome.contains("Welcome to your account"));
     }
 
-    @And("I click on \"([^\"]*)\"")
+    @And("I click on \"([^\"]*)\"")  
     public void i_click_on(String optionToClick) {
         PageFactory.initElements(Hooks.driver, MyAccount.class);
         for (WebElement webEle : MyAccount.myaccountLinkList) {
