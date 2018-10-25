@@ -5,7 +5,6 @@ import com.automation.pageObjects.*;
 import com.automation.utils.SeleniumUtils;
 import cucumber.api.java.en.*;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.WebElement;
 
 public class LoginStepDefinition {
 
