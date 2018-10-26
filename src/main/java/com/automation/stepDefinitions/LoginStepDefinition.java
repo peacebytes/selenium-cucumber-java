@@ -5,12 +5,19 @@ import com.automation.pageObjects.*;
 import com.automation.utils.SeleniumUtils;
 import cucumber.api.java.en.*;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.WebDriver;
 
 public class LoginStepDefinition {
 
+    public WebDriver d;
+
+    public LoginStepDefinition() {
+        d = Hooks.driver;
+    }
+
     @Given("I have logged into Automation Practice")
     public void loginAutomationPractice() {
-        PageFactory.initElements(Hooks.driver, LoginPage.class);
+        PageFactory.initElements(d, LoginPage.class);
         SeleniumUtils.navigateToURL(Hooks.url);
         SeleniumUtils.clickElement(LoginPage.loginElement);
         LoginPage.login(Hooks.email, Hooks.password);
@@ -21,7 +28,7 @@ public class LoginStepDefinition {
 
     @Then("I log out Automation Practice")
     public void i_log_out_Automation_Practice() {
-        PageFactory.initElements(Hooks.driver, LoginPage.class);
+        PageFactory.initElements(d, LoginPage.class);
         SeleniumUtils.clickElement(LoginPage.logoutElement);
         //assert log out was successful
         String actualTextalreadyRegistered = SeleniumUtils.getTextWebElement(LoginPage.alreadyRegistered);

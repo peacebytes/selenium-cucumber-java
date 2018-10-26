@@ -15,7 +15,24 @@ Google for:
 
 *Setup WebDrivers*
 
+## How to run test features that I am working on?
+Run specific test features (default.browser=chrome & default.env=local)
+Put `@wip` on top of feature files, then:
+```
+mvn test -Dcucumber.options='--tags @wip'
+```
+
+## How to skip test features that I don't want to run
+Put `@skip` on top of feature files, then:
+```
+mvn test
+```
+
 ## How do I execute test on local?
+Run Smoke Test
+```
+mvn test -Dcucumber.options='--features /features/Smoketest.feature'
+```
 
 Run All Test (default.browser=headless & default.env=local)
 ```
@@ -24,11 +41,6 @@ mvn clean install
 Compile code without execute test
 ```
 mvn clean install -DskipTests=true
-```
-Run specific test features (default.browser=chrome & default.env=local)
-Put `@wip` on top of feature file, then:
-```
-mvn test -Dcucumber.options='--tags @wip'
 ```
 Execute test against specific browser and env
 ```

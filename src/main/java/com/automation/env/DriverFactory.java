@@ -52,8 +52,6 @@ public class DriverFactory {
                   d = new ChromeDriver();
             }
         }
-
-
         d.manage().deleteAllCookies();
       	d.manage().window().maximize();
         d.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);

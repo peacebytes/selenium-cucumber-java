@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
         format ={"pretty",
                 "html:target/cucumber/cucumber.html", "json:target/cucumber/cucumber.json"},
         glue = "com.automation.stepDefinitions",
+        tags = {"~@skip"},
         strict = true)
 public class RunCukeTest {
 }

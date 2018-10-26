@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.By;
+import com.automation.utils.SeleniumUtils;
 import java.util.List;
 
 public class MyAddress extends BasePage {
@@ -19,14 +20,14 @@ public class MyAddress extends BasePage {
     public static List<WebElement> addressesList;
 
     public static List<WebElement> getAddressDetails(WebElement parentWebElement) {
-        return parentWebElement.findElements(By.cssSelector("ul > li"));
+        return SeleniumUtils.getWebElements(parentWebElement, "css","ul > li");
     }
 
     public static WebElement getUpdateButton(WebElement parentWebElement) {
-        return parentWebElement.findElement(By.xpath("//a[@title='Update']"));
+        return SeleniumUtils.getWebElement(parentWebElement, "xpath","//a[@title='Update']");
     }
 
     public static WebElement getDeleteButton(WebElement parentWebElement) {
-        return parentWebElement.findElement(By.xpath("//a[@title='Delete']"));
+        return SeleniumUtils.getWebElement(parentWebElement, "xpath","//a[@title='Delete']");
     }
 }

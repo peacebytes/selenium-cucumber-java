@@ -77,6 +77,10 @@ public class Hooks {
                 System.err.println(somePlatformsDontSupportScreenshots.getMessage());
             }
         }
+        driver.close();
+        try {
+            Thread.sleep(3000);
+        } catch (Exception e) {}
         driver.quit();
     }
 }
