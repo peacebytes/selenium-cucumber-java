@@ -1,24 +1,15 @@
 package com.automation.stepDefinitions;
 
+import static org.testng.AssertJUnit.*;
 import com.automation.pageObjects.*;
-import com.automation.utils.SeleniumUtils;
 import cucumber.api.java.en.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.WebElement;
+import com.automation.utils.SeleniumUtils;
 
 public class MyAccountStepDefinition {
 
-    public WebDriver d;
-
-    public MyAccountStepDefinition() {
-        d = Hooks.driver;
-        PageFactory.initElements(d, SeleniumUtils.class);
-    }
-
     @Then("I click My Account")
     public void i_click_myaccount() {
-        PageFactory.initElements(d, MyAccount.class);
         SeleniumUtils.clickElement(MyAccount.myaccountElement);
         //assert i am at My Account
         String actualTextmyaccountWelcome = SeleniumUtils.getTextWebElement(MyAccount.myaccountWelcome);
@@ -27,7 +18,6 @@ public class MyAccountStepDefinition {
 
     @And("I click on \"([^\"]*)\"")
     public void i_click_on(String optionToClick) {
-        PageFactory.initElements(d, MyAccount.class);
         for (WebElement webEle : MyAccount.myaccountLinkList) {
             if (SeleniumUtils.getTextWebElement(webEle).toLowerCase().equals(optionToClick.toLowerCase())) {
                 SeleniumUtils.clickElement(webEle);

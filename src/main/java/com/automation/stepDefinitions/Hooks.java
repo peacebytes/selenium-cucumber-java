@@ -10,6 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import com.automation.utils.PropertyReader;
 import com.google.common.base.Strings;
+import org.openqa.selenium.support.PageFactory;
+import com.automation.pageObjects.*;
+import com.automation.utils.SeleniumUtils;
 
 public class Hooks {
 
@@ -60,6 +63,12 @@ public class Hooks {
 
         //Set up WebDriver
         driver = DriverFactory.CreateWebDriver();
+
+        //Initialize all Page Objects
+        PageFactory.initElements(driver, SeleniumUtils.class);
+        PageFactory.initElements(driver, MyAccount.class);
+        PageFactory.initElements(driver, LoginPage.class);
+        PageFactory.initElements(driver, MyAddress.class);
     }
 
     @After

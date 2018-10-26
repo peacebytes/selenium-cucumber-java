@@ -1,26 +1,16 @@
 package com.automation.stepDefinitions;
 
-import com.automation.pageObjects.MyAddress;
-import com.automation.utils.SeleniumUtils;
-import cucumber.api.java.en.Then;
-import org.openqa.selenium.WebDriver;
+import static org.testng.AssertJUnit.*;
+import com.automation.pageObjects.*;
+import cucumber.api.java.en.*;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import java.util.List;
+import com.automation.utils.SeleniumUtils;
 
 public class MyAddressStepDefinition {
 
-    public WebDriver d;
-
-    public MyAddressStepDefinition() {
-        d = Hooks.driver;
-        PageFactory.initElements(d, SeleniumUtils.class);
-    }
-
     @Then("I view all addresses")
     public void i_view_all_addresses() {
-        PageFactory.initElements(d, MyAddress.class);
-
         for (WebElement webEle : MyAddress.addressesList) {
             for (WebElement detailLine : MyAddress.getAddressDetails(webEle)) {
                 System.out.println(SeleniumUtils.getTextWebElement(detailLine).toLowerCase());
@@ -31,8 +21,6 @@ public class MyAddressStepDefinition {
 
     @Then("I delete address \"([^\"]*)\"")
     public void i_delete_address(String addressToDelete) {
-        PageFactory.initElements(d, MyAddress.class);
-
         for (WebElement webEle : MyAddress.addressesList) {
             List<WebElement> addressDetails = MyAddress.getAddressDetails(webEle);
             String foundAddressName = SeleniumUtils.getTextWebElement(addressDetails.get(0)).toLowerCase();

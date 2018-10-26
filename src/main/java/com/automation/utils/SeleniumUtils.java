@@ -1,6 +1,5 @@
 package com.automation.utils;
 
-import com.automation.stepDefinitions.Hooks;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -93,20 +92,4 @@ public class SeleniumUtils extends BasePage {
             d.switchTo().defaultContent();
         } catch (WebDriverException ex) {}
     }
-
-//    protected void dismissAlert() {
-//        waitFor(new BooleanCondition() {
-//            public Boolean apply(WebDriver webDriver) {
-//                try {
-//                    webDriver.switchTo().alert().dismiss();
-//                    return true;
-//                } catch (WebDriverException ex) {
-//                    return false;
-//                }
-//            }
-//            public String describeFailure() {
-//                return COULD_NOT_LOCATE_OR_ACCEPT_ALERT_BOX;
-//            }
-//        });
-//    }
 }
