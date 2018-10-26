@@ -5,13 +5,18 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
+import com.automation.pageObjects.BasePage;
 
-public class SeleniumUtils {
+public class SeleniumUtils extends BasePage {
 
-    public static WebDriver d = Hooks.driver;
+    private static WebDriver d;
 
-    public static void navigateToURL(String url)
-    {
+    public SeleniumUtils(WebDriver driver){
+        super(driver);
+        d = driver;
+    }
+
+    public static void navigateToURL(String url) {
         d.get(url);
     }
 
@@ -19,8 +24,7 @@ public class SeleniumUtils {
         waitWebElement(webElement).sendKeys(textValue);
     }
 
-    public static void clickElement(WebElement webElement)
-    {
+    public static void clickElement(WebElement webElement) {
         waitWebElement(webElement).click();
     }
 
@@ -72,15 +76,13 @@ public class SeleniumUtils {
         }
     }
 
-    public static WebElement waitWebElement(WebElement webElement)
-    {
+    public static WebElement waitWebElement(WebElement webElement) {
         WebDriverWait Wait = new WebDriverWait(d, 1200);
         ((JavascriptExecutor)d).executeScript("arguments[0].scrollIntoView();", webElement);
         return Wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
-    public static String getTextWebElement(WebElement webElement)
-    {
+    public static String getTextWebElement(WebElement webElement) {
         waitWebElement(webElement);
         return  webElement.getText();
     }
@@ -89,8 +91,7 @@ public class SeleniumUtils {
         try {
             d.switchTo().alert().accept();
             d.switchTo().defaultContent();
-        } catch (WebDriverException ex) {
-        }
+        } catch (WebDriverException ex) {}
     }
 
 //    protected void dismissAlert() {

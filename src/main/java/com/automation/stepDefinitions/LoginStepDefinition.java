@@ -9,10 +9,11 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginStepDefinition {
 
-    public WebDriver d;
+    private WebDriver d;
 
     public LoginStepDefinition() {
         d = Hooks.driver;
+        PageFactory.initElements(d, SeleniumUtils.class);
     }
 
     @Given("I have logged into Automation Practice")

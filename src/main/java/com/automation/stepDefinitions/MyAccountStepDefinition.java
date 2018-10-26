@@ -13,6 +13,7 @@ public class MyAccountStepDefinition {
 
     public MyAccountStepDefinition() {
         d = Hooks.driver;
+        PageFactory.initElements(d, SeleniumUtils.class);
     }
 
     @Then("I click My Account")
