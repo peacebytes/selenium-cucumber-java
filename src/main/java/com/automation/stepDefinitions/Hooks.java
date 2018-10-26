@@ -23,6 +23,7 @@ public class Hooks {
     public static String url;
     public static String browser;
     public static String env;
+    public static Integer timeout;
 
     //Private variables
     private static String targetBrowser;
@@ -31,13 +32,14 @@ public class Hooks {
 
     @Before
     /**
-     * Delete all cookies at the start of each scenario to avoid shared state between tests
+     * Create new webdriver at the start of each scenario to avoid shared state between tests
      */
     public void openBrowser() {
         //Loading config.properties
         email = PropertyReader.readConfigProperties("email");
         password = PropertyReader.readConfigProperties("password");
         url = PropertyReader.readConfigProperties("url");
+        timeout = Integer.parseInt(PropertyReader.readConfigProperties("timeout"));
 
         System.out.println("url: " + url);
         System.out.println("email: " + email);

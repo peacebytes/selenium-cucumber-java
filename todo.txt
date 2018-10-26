@@ -1,0 +1,3 @@
+1. research how to store and use test data in json or excel
+2. finish flow of create, update, delete address
+3. world object to store global variables

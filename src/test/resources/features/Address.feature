@@ -16,3 +16,11 @@ Feature: Addresses
         And I click on "My addresses"
         Then I view all addresses
         And I log out Automation Practice
+
+    @wip
+    Scenario: Add Address
+        Given I have logged into Automation Practice
+        Then I click My Account
+        And I click on "My addresses"
+        Then I add address "Seattle_WA"
+        And I log out Automation Practice

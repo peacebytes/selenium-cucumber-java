@@ -52,6 +52,7 @@ public class DriverFactory {
                   d = new ChromeDriver();
             }
         }
+        //Delete all cookies at the start of each scenario to avoid shared state between tests 
         d.manage().deleteAllCookies();
       	d.manage().window().maximize();
         d.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);

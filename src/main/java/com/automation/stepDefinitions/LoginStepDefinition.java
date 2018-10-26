@@ -3,7 +3,6 @@ package com.automation.stepDefinitions;
 import static org.testng.AssertJUnit.*;
 import com.automation.pageObjects.*;
 import cucumber.api.java.en.*;
-import org.openqa.selenium.WebElement;
 import com.automation.utils.SeleniumUtils;
 
 public class LoginStepDefinition {
