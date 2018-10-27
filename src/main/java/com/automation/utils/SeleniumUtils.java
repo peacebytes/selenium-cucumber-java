@@ -108,12 +108,16 @@ public class SeleniumUtils extends BasePage {
 
     public static void acceptAlert() {
         try {
-          WebDriverWait Wait = new WebDriverWait(d, Hooks.timeout);
-          Wait.until(ExpectedConditions.alertIsPresent());
-          d.switchTo().alert().accept();
-          d.switchTo().defaultContent();
-        } catch (WebDriverException ex) {
-          System.out.println("Alert is NOT Displayed");
+            WebDriverWait Wait = new WebDriverWait(d, Hooks.timeout);
+            Wait.until(ExpectedConditions.alertIsPresent());
+            Alert alert = d.switchTo().alert();
+            alert.accept();
+            //if alert present, accept and move on.
+            d.switchTo().defaultContent();
+        }
+        catch (NoAlertPresentException e) {
+            //do what you normally would if you didn't have the alert.
+            System.out.println("Alert is NOT Displayed");
         }
     }
 }

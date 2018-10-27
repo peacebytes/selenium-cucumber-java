@@ -53,10 +53,21 @@ public class MyAddress extends BasePage {
     }
 
     public static WebElement getUpdateButton(WebElement parentWebElement) {
-        return SeleniumUtils.getWebElement(parentWebElement, "xpath","//a[@title='Update']");
+        return SeleniumUtils.getWebElement(parentWebElement, "xpath","a[@title='Update']");
     }
 
     public static WebElement getDeleteButton(WebElement parentWebElement) {
-        return SeleniumUtils.getWebElement(parentWebElement, "xpath","//a[@title='Delete']");
+        return SeleniumUtils.getWebElement(parentWebElement, "xpath","a[@title='Delete']");
+    }
+
+    public static Boolean isAddressExisted(String addressName) {
+        Boolean flag = Boolean.FALSE;
+        for (WebElement webEle : addressesList) {
+            String s = SeleniumUtils.getTextWebElement(getAddressDetails(webEle).get(0)).toLowerCase();
+            if (s.equals(addressName.toLowerCase())) {
+                flag = Boolean.TRUE;
+            }
+        }
+        return flag;
     }
 }
