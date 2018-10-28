@@ -1,0 +1,31 @@
+{
+  "addresses": [
+    {
+      "address1": "Test1 Address",
+      "city": "city Test1",
+      "state_option": "Washington",
+      "postcode": "02123",
+      "country_option": "United States",
+      "phone": "3424443333",
+      "alias": "Test1"
+    },
+    {
+      "address1": "Test2 Address",
+      "city": "city Test2",
+      "state_option": "Washington",
+      "postcode": "02123",
+      "country_option": "United States",
+      "phone": "3424443333",
+      "alias": "Test2"
+    }
+  ],
+  "address":{
+    "address1": "Random Name Address",
+    "city": "city Random Name",
+    "state_option": "Washington",
+    "postcode": "02123",
+    "country_option": "United States",
+    "phone": "3424443333",
+    "alias": "Random Name"
+  }
+}

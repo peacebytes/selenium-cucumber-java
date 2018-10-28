@@ -1,11 +1,11 @@
 package com.automation.utils;
 
-import com.automation.stepDefinitions.Hooks;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import com.automation.pageObjects.BasePage;
+import com.automation.stepDefinitions.Hooks;
 
 public class SeleniumUtils extends BasePage {
 
@@ -21,11 +21,22 @@ public class SeleniumUtils extends BasePage {
     }
 
     public static void enterText(WebElement webElement, String textValue) {
-        waitWebElement(webElement).sendKeys(textValue);
+        waitWebElementClickable(webElement).clear();
+        webElement.sendKeys(textValue);
     }
 
     public static void clickElement(WebElement webElement) {
-        waitWebElement(webElement).click();
+        waitWebElementClickable(webElement).click();
+    }
+
+    /*
+    * Pay extra careful to use this. Should be sure the form contains webElement is loaded.
+    * If some elements are clearly loaded in a form but seems not set to clickable
+    * i.e waitWebElementClickable would not work for them, use this method to click.
+    */
+    public static void clickElementForcefully(WebElement webElement) {
+        if (waitWebElementVisibility(webElement))
+          webElement.click();
     }
 
     public static List<WebElement> getWebElements(WebElement parentWebElement, String type, String accessValue) {
@@ -76,37 +87,37 @@ public class SeleniumUtils extends BasePage {
         }
     }
 
-    public static WebElement waitWebElement(WebElement webElement) {
-        WebDriverWait Wait = new WebDriverWait(d, 1200);
-        ((JavascriptExecutor)d).executeScript("arguments[0].scrollIntoView();", webElement);
-        return Wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    public static WebElement waitWebElementClickable(WebElement webElement) {
+      WebDriverWait Wait = new WebDriverWait(d, Hooks.timeout);
+      return Wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    public static Boolean waitWebElementVisibility(WebElement webElement) {
+        WebDriverWait WaitAbitToCheckVisibility = new WebDriverWait(d, 1);
+        return !WaitAbitToCheckVisibility.until(ExpectedConditions.invisibilityOf(webElement));
+    }
+
+    public static void scollToViewWebElement(WebElement webElement) {
+        ((JavascriptExecutor)d).executeScript("arguments[0].scrollIntoView();", waitWebElementClickable(webElement));
     }
 
     public static String getTextWebElement(WebElement webElement) {
-        waitWebElement(webElement);
+        waitWebElementClickable(webElement);
         return  webElement.getText();
     }
 
     public static void acceptAlert() {
         try {
-            d.switchTo().alert().accept();
+            WebDriverWait Wait = new WebDriverWait(d, Hooks.timeout);
+            Wait.until(ExpectedConditions.alertIsPresent());
+            Alert alert = d.switchTo().alert();
+            alert.accept();
+            //if alert present, accept and move on.
             d.switchTo().defaultContent();
-        } catch (WebDriverException ex) {}
+        }
+        catch (NoAlertPresentException e) {
+            //do what you normally would if you didn't have the alert.
+            System.out.println("Alert is NOT Displayed");
+        }
     }
-
-//    protected void dismissAlert() {
-//        waitFor(new BooleanCondition() {
-//            public Boolean apply(WebDriver webDriver) {
-//                try {
-//                    webDriver.switchTo().alert().dismiss();
-//                    return true;
-//                } catch (WebDriverException ex) {
-//                    return false;
-//                }
-//            }
-//            public String describeFailure() {
-//                return COULD_NOT_LOCATE_OR_ACCEPT_ALERT_BOX;
-//            }
-//        });
-//    }
 }

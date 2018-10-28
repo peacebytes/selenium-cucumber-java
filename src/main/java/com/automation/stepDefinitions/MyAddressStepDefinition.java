@@ -1,46 +1,46 @@
 package com.automation.stepDefinitions;
 
-import com.automation.pageObjects.MyAddress;
-import com.automation.utils.SeleniumUtils;
-import cucumber.api.java.en.Then;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import java.util.List;
+import com.automation.pageObjects.*;
+import com.google.common.base.Strings;
+import cucumber.api.java.en.*;
+
+import java.util.HashMap;
+import com.automation.utils.*;
 
 public class MyAddressStepDefinition {
 
-    public WebDriver d;
-
-    public MyAddressStepDefinition() {
-        d = Hooks.driver;
-        PageFactory.initElements(d, SeleniumUtils.class);
-    }
-
-    @Then("I view all addresses")
-    public void i_view_all_addresses() {
-        PageFactory.initElements(d, MyAddress.class);
-
-        for (WebElement webEle : MyAddress.addressesList) {
-            for (WebElement detailLine : MyAddress.getAddressDetails(webEle)) {
-                System.out.println(SeleniumUtils.getTextWebElement(detailLine).toLowerCase());
-            }
-            System.out.println("------");
+    @Then("I delete address \"([^\"]*)\"")
+    public void i_delete_address(String addressToDelete) {
+        if (MyAddress.deleteAddress(addressToDelete)) {
+            //Verify deletion of address works as expected
+            assert (!MyAddress.isAddressExisted(addressToDelete));
         }
     }
 
-    @Then("I delete address \"([^\"]*)\"")
-    public void i_delete_address(String addressToDelete) {
-        PageFactory.initElements(d, MyAddress.class);
+    @Then("I update address \"([^\"]*)\"")
+    public void i_updates_address(String addressToUpdated) {
+        String newAlias = MyAddress.updateAddress(addressToUpdated);
+        if (!Strings.isNullOrEmpty(newAlias)){
+            //Verify updating address works as expected
+            assert(MyAddress.isAddressExisted(newAlias));
+        }
+    }
 
-        for (WebElement webEle : MyAddress.addressesList) {
-            List<WebElement> addressDetails = MyAddress.getAddressDetails(webEle);
-            String foundAddressName = SeleniumUtils.getTextWebElement(addressDetails.get(0)).toLowerCase();
-            System.out.println(foundAddressName);
-            if (foundAddressName.toLowerCase().equals(addressToDelete.toLowerCase())) {
-                SeleniumUtils.clickElement(MyAddress.getDeleteButton(webEle));
-                SeleniumUtils.acceptAlert();
-                break;
+    @Then("I add an address from test data")
+    public void i_add_an_address() {
+        HashMap<String,String> dataAddress = TestDataJSONReader.readJsonObject("address");
+        if (MyAddress.addAddress(dataAddress)){
+            //Verify adding address works as expected
+            assert(MyAddress.isAddressExisted(dataAddress.get("alias")));
+        }
+    }
+
+    @Then("I add all addressses from test data")
+    public void i_add_all_address() {
+        for (HashMap<String,String> dataAddress: TestDataJSONReader.readJsonArray("addresses")){
+            if (MyAddress.addAddress(dataAddress)){
+                //Verify adding address works as expected
+                assert(MyAddress.isAddressExisted(dataAddress.get("alias")));
             }
         }
     }
