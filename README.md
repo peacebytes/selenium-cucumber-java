@@ -32,7 +32,7 @@ Example:
 Global variables to store test data generated during testing and can be shared within a test scenario. In step definition files, calling Hooks.{global_variable} directly to set or get value.
 
 ## How to deal with test data?
-Test data is stored at `src\main\resources\TestData.json`. Test Data will be loaded in Hooks.
+Test data is stored at `src\main\resources\TestData.json`. Test Data will be loaded in Hooks for each test scenario.
 
 Usage in Step Definition:
 - If test data is an array, call:
@@ -44,8 +44,13 @@ TestDataJSONReader.readJsonArray(keyValueInJson);
 TestDataJSONReader.readJsonObject(keyValueInJson);
 ```
 
-## How to run test features that I am working on?
-Run specific test features (default.browser=chrome & default.env=local)
+## How to complie, clean up and test scripts
+```
+mvn clean install
+```
+
+## How to run only feature files that I am working on?
+Run specific test features (default.browser=headless & default.env=local)
 Put `@wip` on top of feature files, then:
 ```
 mvn test -Dcucumber.options='--tags @wip'
@@ -57,7 +62,7 @@ Put `@skip` on top of feature files, then:
 mvn test
 ```
 
-## How do I execute test on local?
+## More options to test on local?
 Run Smoke Test
 ```
 mvn test -Dcucumber.options='--features /features/Smoketest.feature'
@@ -65,7 +70,7 @@ mvn test -Dcucumber.options='--features /features/Smoketest.feature'
 
 Run All Test (default.browser=headless & default.env=local)
 ```
-mvn clean install
+mvn test
 ```
 Compile code without execute test
 ```
