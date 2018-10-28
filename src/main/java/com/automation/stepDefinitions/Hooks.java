@@ -35,7 +35,7 @@ public class Hooks {
 
     @Before
     /**
-     * Create new webdriver at the start of each scenario to avoid shared state between tests
+     * This is to run when starting a scenario.
      */
     public void openBrowser() {
         //Loading Test Data
@@ -74,7 +74,7 @@ public class Hooks {
         }
         System.out.println("env: " + env);
 
-        //Set up WebDriver
+        //Set up WebDriver at the start of each scenario to avoid shared state between tests
         driver = DriverFactory.CreateWebDriver();
 
         //Initialize all Page Objects

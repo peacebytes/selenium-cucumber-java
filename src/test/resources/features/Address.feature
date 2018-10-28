@@ -1,6 +1,6 @@
 Feature: Addresses
 
-  This feature file to do address updating
+  This feature file to domv address
 
     Scenario: Add Addresses
         Given I have logged into Automation Practice
@@ -20,5 +20,5 @@ Feature: Addresses
         Given I have logged into Automation Practice
         Then I click My Account
         And I click on "My addresses"
-        Then I delete address "test2"
+        Then I delete address "test1Updated"
         And I log out Automation Practice

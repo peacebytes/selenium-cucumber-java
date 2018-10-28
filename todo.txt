@@ -1,4 +1,0 @@
-1. move add, update, delete into MyAddress.java
-2. clean up println
-3. update readme how to use testdata
-4. finish push to github

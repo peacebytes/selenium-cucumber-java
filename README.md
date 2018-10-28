@@ -31,6 +31,18 @@ Example:
 
 Global variables to store test data generated during testing and can be shared within a test scenario. In step definition files, calling Hooks.{global_variable} directly to set or get value.
 
+## How to deal with test data?
+Test data is stored at `src\main\resources\TestData.json`. Test Data will be loaded in Hooks.
+
+Usage in Step Definition:
+- If test data is an array, call:
+```
+TestDataJSONReader.readJsonArray(keyValueInJson);
+```
+- If test data is an object, call:
+```
+TestDataJSONReader.readJsonObject(keyValueInJson);
+```
 
 ## How to run test features that I am working on?
 Run specific test features (default.browser=chrome & default.env=local)
@@ -87,7 +99,7 @@ mvn test -Dtarget.env=bs -Dtarget.browser=chrome
 ```
 * Note: All test on Browserstack will be done on Windows 10.
 
-## Ref sources:
+## Ref:
 ```
 https://github.com/cigohere
 https://github.com/machzqcq
