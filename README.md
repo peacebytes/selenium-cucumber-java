@@ -15,35 +15,6 @@ Google for:
 
 *Setup WebDrivers*
 
-## How to deal with global variables?
-Create new global variable in Hooks.java at `com.automation.stepDefinitions.Hooks`
-Example:
-```
-    //Global variables
-    public static WebDriver driver;
-    public static String email;
-    public static String password;
-    public static String url;
-    public static String browser;
-    public static String env;
-    public static Integer timeout;
-```
-
-Global variables to store test data generated during testing and can be shared within a test scenario. In step definition files, calling Hooks.{global_variable} directly to set or get value.
-
-## How to deal with test data?
-Test data is stored at `src\main\resources\TestData.json`. Test Data will be loaded in Hooks for each test scenario.
-
-Usage in Step Definition:
-- If test data is an array, call:
-```
-TestDataJSONReader.readJsonArray(keyValueInJson);
-```
-- If test data is an object, call:
-```
-TestDataJSONReader.readJsonObject(keyValueInJson);
-```
-
 ## How to complie, clean up and test scripts
 ```
 mvn clean install
@@ -103,6 +74,35 @@ Test on Firefox
 mvn test -Dtarget.env=bs -Dtarget.browser=chrome
 ```
 * Note: All test on Browserstack will be done on Windows 10.
+
+## How to deal with global variables?
+Create new global variable in Hooks.java at `com.automation.stepDefinitions.Hooks`
+Example:
+```
+    //Global variables
+    public static WebDriver driver;
+    public static String email;
+    public static String password;
+    public static String url;
+    public static String browser;
+    public static String env;
+    public static Integer timeout;
+```
+
+Global variables to store test data generated during testing and can be shared within a test scenario. In step definition files, calling Hooks.{global_variable} directly to set or get value.
+
+## How to deal with test data?
+Test data is stored at `src\main\resources\TestData.json`. Test Data will be loaded in Hooks for each test scenario.
+
+Usage in Step Definition:
+- If test data is an array, call:
+```
+TestDataJSONReader.readJsonArray(keyValueInJson);
+```
+- If test data is an object, call:
+```
+TestDataJSONReader.readJsonObject(keyValueInJson);
+```
 
 ## Ref:
 ```
