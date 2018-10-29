@@ -15,7 +15,7 @@ Google for:
 
 *Setup WebDrivers*
 
-## How to complie, clean up and test scripts
+## How to compile and execute test?
 ```
 mvn clean install
 ```
