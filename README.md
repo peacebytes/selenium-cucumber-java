@@ -111,6 +111,9 @@ import static org.testng.AssertJUnit.*;
 ```
 http://static.javadoc.io/org.testng/testng/6.11/org/testng/AssertJUnit.html
 
+## How to view report?
+Report can be found at `/target/cucumber/cucumber.html/index.html`
+
 ## Ref:
 ```
 https://github.com/cigohere
