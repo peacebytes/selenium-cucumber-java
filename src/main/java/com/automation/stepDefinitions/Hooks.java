@@ -4,6 +4,7 @@ import com.automation.env.DriverFactory;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.apache.commons.io.IOUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,12 @@ import com.google.common.base.Strings;
 import org.openqa.selenium.support.PageFactory;
 import com.automation.pageObjects.*;
 import com.automation.utils.SeleniumUtils;
+import org.json.*;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class Hooks {
 
@@ -24,17 +31,21 @@ public class Hooks {
     public static String browser;
     public static String env;
     public static Integer timeout;
-
-    //Private variables
-    private static String targetBrowser;
-    private static String targetEnv;
-
+    public static JSONObject testDataJsonObject;
 
     @Before
     /**
-     * Create new webdriver at the start of each scenario to avoid shared state between tests
+     * This is to run when starting a scenario.
      */
     public void openBrowser() {
+        //Loading Test Data
+        try {
+            InputStream inputStream = new FileInputStream("src/main/resources/TestData.json");
+            String s = IOUtils.toString(inputStream, StandardCharsets.UTF_8.name());
+            testDataJsonObject = new JSONObject(s);
+        } catch(IOException e){e.printStackTrace();}
+
+
         //Loading config.properties
         email = PropertyReader.readConfigProperties("email");
         password = PropertyReader.readConfigProperties("password");
@@ -46,7 +57,7 @@ public class Hooks {
         System.out.println("password: " + password);
 
         //Reading passing target.browser argument from command line
-        targetBrowser = System.getProperty("target.browser");
+        String targetBrowser = System.getProperty("target.browser");
         if (!Strings.isNullOrEmpty(targetBrowser)) {
           browser = targetBrowser;
         } else {
@@ -55,7 +66,7 @@ public class Hooks {
         System.out.println("browser: " + browser);
 
         //Reading passing target.env argument from command line
-        targetEnv = System.getProperty("target.env");
+        String targetEnv = System.getProperty("target.env");
         if (!Strings.isNullOrEmpty(targetEnv)) {
           env = targetEnv;
         } else {
@@ -63,7 +74,7 @@ public class Hooks {
         }
         System.out.println("env: " + env);
 
-        //Set up WebDriver
+        //Set up WebDriver at the start of each scenario to avoid shared state between tests
         driver = DriverFactory.CreateWebDriver();
 
         //Initialize all Page Objects

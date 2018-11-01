@@ -60,6 +60,4 @@ public class DriverFactory {
         d.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return d;
     }
-
-
 }
