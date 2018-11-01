@@ -11,7 +11,7 @@
     <properties>
         <target.browser>${targetBrowser}</target.browser>
         <target.env>${targetEnv}</target.env>
-        <cucumber.version>1.2.0</cucumber.version>
+        <cucumber.version>1.2.5</cucumber.version>
     </properties>
 
     <dependencies>
@@ -80,17 +80,13 @@
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.surefire</groupId>
-                        <artifactId>surefire-junit47</artifactId>
-                        <version>2.19.1</version>
-                    </dependency>
-                </dependencies>
+              <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>2.22.1</version>
+                  <configuration>
+                      <useSystemClassLoader>false</useSystemClassLoader>
+                  </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -100,6 +96,7 @@
                     <encoding>UTF-8</encoding>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <compilerArgument>-Werror</compilerArgument>
                 </configuration>
             </plugin>
         </plugins>
