@@ -1,6 +1,6 @@
 Feature: Addresses
 
-  This feature file to domv address
+  This feature file to do actions against address
 
     Scenario: Add Addresses
         Given I have logged into Automation Practice
