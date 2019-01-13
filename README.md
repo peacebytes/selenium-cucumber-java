@@ -14,6 +14,24 @@ Google for:
 *Setup Maven*
 
 *Setup WebDrivers*
+Download Chrome driver http://chromedriver.chromium.org/downloads & Firefox driver https://github.com/mozilla/geckodriver/releases 
+Put them in `/home/{your_user_name_here}/Downloads/browserdrivers`
+
+If you are running console terminal in ubuntu 18, update ~/.profile:
+```
+vim ~/.profile
+```
+
+Adding these lines:
+```
+BROWSER_DRIVERS="/home/{your_user_name_here}/Downloads/browserdrivers";
+PATH="$BROWSER_DRIVERS:$PATH";
+```
+
+For the changes to take effect, restart your computer or source your .profile file using the following command:
+```
+source ~/.profile
+```
 
 ## How to compile and execute test?
 ```
