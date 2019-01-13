@@ -16,6 +16,7 @@ Google for:
 *Setup WebDrivers*
 
 Download Chrome driver http://chromedriver.chromium.org/downloads & Firefox driver https://github.com/mozilla/geckodriver/releases 
+
 Put them in `/home/{your_user_name_here}/Downloads/browserdrivers`
 
 If you are running console terminal in ubuntu 18, update ~/.profile:
