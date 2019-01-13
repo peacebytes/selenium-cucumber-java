@@ -14,6 +14,7 @@ Google for:
 *Setup Maven*
 
 *Setup WebDrivers*
+
 Download Chrome driver http://chromedriver.chromium.org/downloads & Firefox driver https://github.com/mozilla/geckodriver/releases 
 Put them in `/home/{your_user_name_here}/Downloads/browserdrivers`
 
