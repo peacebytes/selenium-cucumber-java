@@ -2,6 +2,7 @@ Feature: Smoke Test
 
   This feature file to do smoke test Automation Practice
 
+  @Smoke
   Scenario: Automation Practice Smoke Test
     Given I have logged into Automation Practice
     Then I click My Account

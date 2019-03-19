@@ -15,7 +15,7 @@ Google for:
 
 *Setup WebDrivers*
 
-Download Chrome driver http://chromedriver.chromium.org/downloads & Firefox driver https://github.com/mozilla/geckodriver/releases 
+Download Chrome driver http://chromedriver.chromium.org/downloads & Firefox driver https://github.com/mozilla/geckodriver/releases
 
 Put them in `/home/{your_user_name_here}/Downloads/browserdrivers`
 
@@ -41,7 +41,7 @@ mvn clean install
 ```
 
 ## How to run only feature files that I am working on?
-Run specific test features (default.browser=headless & default.env=local)
+Run specific test features (default.browser=chrome & default.env=local)
 Put `@wip` on top of feature files, then:
 ```
 mvn test -Dcucumber.options='--tags @wip'
@@ -53,13 +53,19 @@ Put `@skip` on top of feature files, then:
 mvn test
 ```
 
+## How to run test in parallel?
+```
+mvn test -Pparallel
+```
+Check `pom.xml` searching for profile with `<id>parallel</id>`, the number of runners to execute feature files in parallel will be decided by `<forkCount>4</forkCount>`. By default, I set it to 4.
+
 ## More options to test on local?
 Run Smoke Test
 ```
-mvn test -Dcucumber.options='--features /features/Smoketest.feature'
+mvn test -Dcucumber.options='--tags @Smoke'
 ```
 
-Run All Test (default.browser=headless & default.env=local)
+Run All Test (default.browser=chrome & default.env=local)
 ```
 mvn test
 ```
@@ -67,9 +73,9 @@ Compile code without execute test
 ```
 mvn clean install -DskipTests=true
 ```
-Execute test against specific browser and env
+Execute test against specific browser (Firefox) and env
 ```
-mvn test -Dtarget.browser=chrome -Dtarget.env=local
+mvn test -Dtarget.browser=firefox -Dtarget.env=local
 ```
 
 ## How do I execute test on Browserstack?
@@ -134,8 +140,8 @@ http://static.javadoc.io/org.testng/testng/6.11/org/testng/AssertJUnit.html
 ## How to view report?
 Report can be found at `/target/cucumber/cucumber.html/index.html`
 
-## Ref:
-```
-https://github.com/cigohere
-https://github.com/machzqcq
-```
+## How report will look like in parallel test?
+Reporting
+UI acceptance tests result in a HTML report for each feature in test-automation-quickstart/ui-acceptance-tests/target/cucumber-parallel/. With parallel execution you no longer get a single unified report. Instead a report is generated for each individual feature and will need to be combined for reporting on the health of an entire application.
+
+If your tests run as part of a continuous integration pipeline, these individual reports can be automatically joined using plugins such as the Jenkins Cucumber-JVM-Reports plugin.
