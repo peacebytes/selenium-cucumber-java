@@ -35,7 +35,7 @@ public class SeleniumUtils extends BasePage {
     * i.e waitWebElementClickable would not work for them, use this method to click.
     */
     public static void clickElementForcefully(WebElement webElement) {
-        if (waitWebElementVisibility(webElement))
+        if (confirmWebElementVisibled(webElement))
           webElement.click();
     }
 
@@ -88,13 +88,37 @@ public class SeleniumUtils extends BasePage {
     }
 
     public static WebElement waitWebElementClickable(WebElement webElement) {
-      WebDriverWait Wait = new WebDriverWait(d, Hooks.timeout);
-      return Wait.until(ExpectedConditions.elementToBeClickable(webElement));
+      WebDriverWait wait = new WebDriverWait(d, Hooks.timeout);
+      return wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
-    public static Boolean waitWebElementVisibility(WebElement webElement) {
-        WebDriverWait WaitAbitToCheckVisibility = new WebDriverWait(d, 1);
-        return !WaitAbitToCheckVisibility.until(ExpectedConditions.invisibilityOf(webElement));
+    /*
+    * Applying a bit of trick here, instead of checking the visibility of element, going to check if it is invisibled.
+    * Repeatedly the invisibled check in Hooks.timeout/2 to make sure the visibility is stabled and reliable
+    * Eventually, WebElement is always visibled so the Exception would be thrown.
+    * Note: A successful return value for the ExpectedCondition function type is a Boolean value of true i.e element is invisibled, or a non-null object.
+    */
+    public static Boolean confirmWebElementVisibled(WebElement webElement) {
+      try {
+        WebDriverWait wait = new WebDriverWait(d, Hooks.timeout/2);
+        wait.until(ExpectedConditions.invisibilityOf(webElement));
+        return false;
+      } catch (TimeoutException te) {
+        return true;
+      }
+    }
+
+    /*
+    * Same strategy as confirmWebElementVisibled
+    */
+    public static Boolean confirmWebElementInvisibled(WebElement webElement) {
+        try {
+          WebDriverWait wait = new WebDriverWait(d, Hooks.timeout/2);
+          wait.until(ExpectedConditions.visibilityOf(webElement));
+          return false;
+        } catch (TimeoutException te) {
+          return true;
+        }
     }
 
     public static void scollToViewWebElement(WebElement webElement) {
@@ -108,8 +132,8 @@ public class SeleniumUtils extends BasePage {
 
     public static void acceptAlert() {
         try {
-            WebDriverWait Wait = new WebDriverWait(d, Hooks.timeout);
-            Wait.until(ExpectedConditions.alertIsPresent());
+            WebDriverWait wait = new WebDriverWait(d, Hooks.timeout);
+            wait.until(ExpectedConditions.alertIsPresent());
             Alert alert = d.switchTo().alert();
             alert.accept();
             //if alert present, accept and move on.
