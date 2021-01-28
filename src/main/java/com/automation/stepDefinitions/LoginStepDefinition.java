@@ -14,7 +14,10 @@ public class LoginStepDefinition {
         LoginPage.login(Hooks.email, Hooks.password);
         //assert log in was successful
         String actualTextaccount= SeleniumUtils.getTextWebElement(LoginPage.accountElement);
-        assertEquals(actualTextaccount.toLowerCase(), "automation test");
+
+        System.out.println("actualTextaccount:");
+        System.out.println(actualTextaccount);
+        assertEquals("automation qa", actualTextaccount.toLowerCase());
     }
 
     @Then("I log out Automation Practice")
