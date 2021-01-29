@@ -53,11 +53,18 @@ Put `@skip` on top of feature files, then:
 mvn test
 ```
 
-## How to run test in parallel?
+## How to run test in parallel in Selenium Grid
+
+Build test first:
 ```
-mvn test -Pparallel
+mvn clean install -DskipTests=true
+```
+Then run test in parallel
+```
+mvn test -Dcucumber.options='--tags @demo' -Pparallel
 ```
 Check `pom.xml` searching for profile with `<id>parallel</id>`, the number of runners to execute feature files in parallel will be decided by `<forkCount>4</forkCount>`. By default, I set it to 4.
+
 
 ## More options to test on local?
 Run Smoke Test

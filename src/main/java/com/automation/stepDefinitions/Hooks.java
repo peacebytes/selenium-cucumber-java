@@ -86,10 +86,10 @@ public class Hooks {
 
     @After
     public void closeBrowser(Scenario scenario) {
-        driver.close();
         try {
-            Thread.sleep(3000);
+          driver.close();
+          Thread.sleep(3000);
+            driver.quit();
         } catch (Exception e) {}
-        driver.quit();
     }
 }
