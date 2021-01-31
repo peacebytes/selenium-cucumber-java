@@ -26,11 +26,13 @@ Check `pom.xml` > `<id>parallel</id>`, > `<forkCount>4</forkCount>`. By default,
 
 Compile code without execute test
 ```
+cd ~/selenium-cucumber-java
 mvn clean install -DskipTests=true
 ```
 
 Run test in parallel
 ```
+cd ~/selenium-cucumber-java
 mvn test -Dcucumber.options='--tags @demo' -Pparallel
 ```
 
