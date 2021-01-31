@@ -1,9 +1,8 @@
 # Welcome to Selenium Java
 
-This repository is an example of using selenium-cucumber-java to do automated functional test of web application.
+This repository is an example of using Selenium Java to do automated functional test of web application. Test executions can be done on local browsers, on Selenium Grid or on BrowserStack.
 
-	• Based on: selenium-cucumber-java
-	• Website: automationpractice.com
+	• Website for testing: http://automationpractice.com
 
 ## Install dependencies
 
