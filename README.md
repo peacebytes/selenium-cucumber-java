@@ -7,11 +7,8 @@ This repository is an example of using selenium-cucumber-java to do automated fu
 
 ## How do I get set up?
 
-Google for:
-
-*Install JVM*
-
-*Setup Maven*
+*Install JVM, Maven*
+See google :)
 
 *Setup WebDrivers*
 
@@ -35,25 +32,18 @@ For the changes to take effect, restart your computer or source your .profile fi
 source ~/.profile
 ```
 
-## How to compile and execute test?
-```
-mvn clean install
-```
-
-## How to run only feature files that I am working on?
-Run specific test features (default.browser=chrome & default.env=local)
-Put `@wip` on top of feature files, then:
-```
-mvn test -Dcucumber.options='--tags @wip'
-```
-
-## How to skip test features that I don't want to run
-Put `@skip` on top of feature files, then:
-```
-mvn test
-```
-
 ## How to run test in parallel in Selenium Grid
+
+Start selenium grid on local:
+```
+cd src/main/resources/docker-selenium-grid
+```
+To have 4 instances of chrome headless, we have to start 2 chrome nodes (each has 2 instance as set up in docker-compose.yml), the command will be like:
+```
+docker-compose up -d --scale chrome=2
+```
+
+Check `pom.xml` > `<id>parallel</id>`, > `<forkCount>4</forkCount>`. By default, I set it to 4 for the purpose of demostration.
 
 Build test first:
 ```
@@ -63,10 +53,14 @@ Then run test in parallel
 ```
 mvn test -Dcucumber.options='--tags @demo' -Pparallel
 ```
-Check `pom.xml` searching for profile with `<id>parallel</id>`, the number of runners to execute feature files in parallel will be decided by `<forkCount>4</forkCount>`. By default, I set it to 4.
 
+## How to test on local?
 
-## More options to test on local?
+Compile code without execute test
+```
+mvn clean install -DskipTests=true
+```
+
 Run Smoke Test
 ```
 mvn test -Dcucumber.options='--tags @Smoke'
@@ -76,13 +70,21 @@ Run All Test (default.browser=chrome & default.env=local)
 ```
 mvn test
 ```
-Compile code without execute test
-```
-mvn clean install -DskipTests=true
-```
+
 Execute test against specific browser (Firefox) and env
 ```
 mvn test -Dtarget.browser=firefox -Dtarget.env=local
+```
+
+Run specific test features (default.browser=chrome & default.env=local)
+Put `@wip` on top of feature files, then:
+```
+mvn test -Dcucumber.options='--tags @wip'
+```
+
+Put `@skip` on top of feature files, then:
+```
+mvn test
 ```
 
 ## How do I execute test on Browserstack?
@@ -108,47 +110,13 @@ mvn test -Dtarget.env=bs -Dtarget.browser=chrome
 ```
 * Note: All test on Browserstack will be done on Windows 10.
 
-## How to deal with global variables?
-Create new global variable in Hooks.java at `com.automation.stepDefinitions.Hooks`
-Example:
-```
-    //Global variables
-    public static WebDriver driver;
-    public static String email;
-    public static String password;
-    public static String url;
-    public static String browser;
-    public static String env;
-    public static Integer timeout;
-```
-
-Global variables to store test data generated during testing and can be shared within a test scenario. In step definition files, calling Hooks.{global_variable} directly to set or get value.
-
-## How to deal with test data?
-Test data is stored at `src\main\resources\TestData.json`. Test Data will be loaded in Hooks for each test scenario.
-
-Usage in Step Definition:
-- If test data is an array, call:
-```
-TestDataJSONReader.readJsonArray(keyValueInJson);
-```
-- If test data is an object, call:
-```
-TestDataJSONReader.readJsonObject(keyValueInJson);
-```
-
-## How assertion to be done?
-In step definition files, import `AssertJUnit`, then see guidelines for usage:
-```
-import static org.testng.AssertJUnit.*;
-```
-http://static.javadoc.io/org.testng/testng/6.11/org/testng/AssertJUnit.html
-
 ## How to view report?
 Report can be found at `/target/cucumber/cucumber.html/index.html`
 
-## How report will look like in parallel test?
-Reporting
-UI acceptance tests result in a HTML report for each feature in test-automation-quickstart/ui-acceptance-tests/target/cucumber-parallel/. With parallel execution you no longer get a single unified report. Instead a report is generated for each individual feature and will need to be combined for reporting on the health of an entire application.
+## How report will look like in parallel tests?
 
-If your tests run as part of a continuous integration pipeline, these individual reports can be automatically joined using plugins such as the Jenkins Cucumber-JVM-Reports plugin.
+[Report Portal](https://reportportal.io/) integration will be our best bet. To be updated with integration of report portal to this Selenium Java framework.
+
+How to set up Report Portal can be found here: https://automationbytes.me/how-to-setup-report-portal
+
+More documentation at : `/docs`
