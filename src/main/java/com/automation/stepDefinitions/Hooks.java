@@ -7,6 +7,7 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.support.PageFactory;
 import com.automation.pageObjects.*;
 import com.automation.env.Global;
+
 public class Hooks {
 
     @Before
@@ -24,7 +25,7 @@ public class Hooks {
         Global.parseCommandLineArgs();
 
         //Set up WebDriver at the start of each scenario to avoid shared state between tests
-        Global.driver = DriverFactory.CreateWebDriver();
+        DriverFactory.createWebDriver();
 
         //Initialize all Page Objects
         PageFactory.initElements(Global.driver, MyAccount.class);

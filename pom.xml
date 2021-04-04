@@ -15,32 +15,41 @@
         <target.env>${targetEnv}</target.env>
         <cucumber.version>1.2.5</cucumber.version>
     </properties>
-
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-epam-reportportal</id>
+            <name>bintray</name>
+            <url>http://dl.bintray.com/epam/reportportal</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>1.2.5</version>
+            <version>${cucumber.version}</version>
         </dependency>
-
-        <!-- These are the cucumber-junit dependencies -->
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.2.5</version>
+            <version>${cucumber.version}</version>
         </dependency>
-        <!-- These are the junit dependencies -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-        </dependency>
-        <!-- These are the selenium-webdriver dependencies -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.14.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.epam.reportportal/agent-java-cucumber5 -->
+<!--        <dependency>-->
+<!--            <groupId>com.epam.reportportal</groupId>-->
+<!--            <artifactId>agent-java-cucumber</artifactId>-->
+<!--            <version>5.0.1</version>-->
+<!--        </dependency>-->
+<!--        -->
+<!--         to solve this we might need to upgrade cucumber java and cucumber junit version -->
+<!--         see https://github.com/reportportal/agent-java-cucumber-->
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
