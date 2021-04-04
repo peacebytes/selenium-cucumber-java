@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public abstract class BasePage {
+public class BasePage extends utils{
 
     public static WebDriver driver;
     public static boolean bResult;

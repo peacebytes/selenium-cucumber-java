@@ -1,9 +1,6 @@
 package com.automation.stepDefinitions;
 
-import static org.testng.AssertJUnit.*;
-import com.automation.pageObjects.*;
 import cucumber.api.java.en.*;
-import com.automation.utils.SeleniumUtils;
 
 public class DemoStepDefinitions {
 

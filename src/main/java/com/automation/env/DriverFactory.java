@@ -7,7 +7,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.concurrent.TimeUnit;
-import com.automation.stepDefinitions.Hooks;
 import com.automation.utils.PropertyReader;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
@@ -19,22 +18,22 @@ public class DriverFactory {
 
     public static WebDriver CreateWebDriver()
     {
-      switch(Hooks.env){
+      switch(Global.env){
         case "bs":
-          setupBrowserStack(Hooks.browser);
+          setupBrowserStack(Global.browser);
           break;
         case "grid":
-          setupRemoteWebDriver(Hooks.browser);
+          setupRemoteWebDriver(Global.browser);
           break;
         default:
-          setupLocalWebDriver(Hooks.browser);
+          setupLocalWebDriver(Global.browser);
           break;
           
       }
       //Delete all cookies at the start of each scenario to avoid shared state between tests
       d.manage().deleteAllCookies();
       d.manage().window().maximize();
-      d.manage().timeouts().pageLoadTimeout(Hooks.timeout, TimeUnit.SECONDS);
+      d.manage().timeouts().pageLoadTimeout(Global.timeout, TimeUnit.SECONDS);
       return d;
     }
 

@@ -9,7 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <!--suppress UnresolvedMavenProperty -->
         <target.browser>${targetBrowser}</target.browser>
+        <!--suppress UnresolvedMavenProperty -->
         <target.env>${targetEnv}</target.env>
         <cucumber.version>1.2.5</cucumber.version>
     </properties>

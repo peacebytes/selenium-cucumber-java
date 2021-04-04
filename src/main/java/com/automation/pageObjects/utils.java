@@ -1,23 +1,16 @@
-package com.automation.utils;
+package com.automation.pageObjects;
 
+import com.automation.env.Global;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
-import com.automation.pageObjects.BasePage;
-import com.automation.stepDefinitions.Hooks;
 
-public class SeleniumUtils extends BasePage {
-
-    private static WebDriver d;
-
-    public SeleniumUtils(WebDriver driver){
-        super(driver);
-        d = driver;
-    }
+public class utils {
 
     public static void navigateToURL(String url) {
-        d.get(url);
+        Global.driver.get(url);
     }
 
     public static void enterText(WebElement webElement, String textValue) {
@@ -88,7 +81,7 @@ public class SeleniumUtils extends BasePage {
     }
 
     public static WebElement waitWebElementClickable(WebElement webElement) {
-      WebDriverWait wait = new WebDriverWait(d, Hooks.timeout);
+      WebDriverWait wait = new WebDriverWait(Global.driver, Global.timeout);
       return wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
@@ -100,7 +93,7 @@ public class SeleniumUtils extends BasePage {
     */
     public static Boolean confirmWebElementVisibled(WebElement webElement) {
       try {
-        WebDriverWait wait = new WebDriverWait(d, Hooks.timeout/2);
+        WebDriverWait wait = new WebDriverWait(Global.driver, Global.timeout/2);
         wait.until(ExpectedConditions.invisibilityOf(webElement));
         return false;
       } catch (TimeoutException te) {
@@ -113,7 +106,7 @@ public class SeleniumUtils extends BasePage {
     */
     public static Boolean confirmWebElementInvisibled(WebElement webElement) {
         try {
-          WebDriverWait wait = new WebDriverWait(d, Hooks.timeout/2);
+          WebDriverWait wait = new WebDriverWait(Global.driver, Global.timeout/2);
           wait.until(ExpectedConditions.visibilityOf(webElement));
           return false;
         } catch (TimeoutException te) {
@@ -122,7 +115,7 @@ public class SeleniumUtils extends BasePage {
     }
 
     public static void scollToViewWebElement(WebElement webElement) {
-        ((JavascriptExecutor)d).executeScript("arguments[0].scrollIntoView();", waitWebElementClickable(webElement));
+        ((JavascriptExecutor)Global.driver).executeScript("arguments[0].scrollIntoView();", waitWebElementClickable(webElement));
     }
 
     public static String getTextWebElement(WebElement webElement) {
@@ -132,12 +125,12 @@ public class SeleniumUtils extends BasePage {
 
     public static void acceptAlert() {
         try {
-            WebDriverWait wait = new WebDriverWait(d, Hooks.timeout);
+            WebDriverWait wait = new WebDriverWait(Global.driver, Global.timeout);
             wait.until(ExpectedConditions.alertIsPresent());
-            Alert alert = d.switchTo().alert();
+            Alert alert = Global.driver.switchTo().alert();
             alert.accept();
             //if alert present, accept and move on.
-            d.switchTo().defaultContent();
+            Global.driver.switchTo().defaultContent();
         }
         catch (NoAlertPresentException e) {
             //do what you normally would if you didn't have the alert.

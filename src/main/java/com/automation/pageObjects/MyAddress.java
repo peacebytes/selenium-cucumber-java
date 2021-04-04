@@ -3,7 +3,6 @@ package com.automation.pageObjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import com.automation.utils.SeleniumUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,22 +50,22 @@ public class MyAddress extends BasePage {
     public static WebElement submitAddressButton;
 
     public static List<WebElement> getAddressDetails(WebElement parentWebElement) {
-        return SeleniumUtils.getWebElements(parentWebElement, "css","ul > li");
+        return getWebElements(parentWebElement, "css","ul > li");
     }
 
     public static WebElement getUpdateButton(WebElement parentWebElement) {
-        return SeleniumUtils.getWebElement(parentWebElement, "xpath","a[@title='Update']");
+        return getWebElement(parentWebElement, "xpath","a[@title='Update']");
     }
 
     public static WebElement getDeleteButton(WebElement parentWebElement) {
-        return SeleniumUtils.getWebElement(parentWebElement, "xpath","a[@title='Delete']");
+        return getWebElement(parentWebElement, "xpath","a[@title='Delete']");
     }
 
     //Return false if no address found; otherwise, return true
     public static Boolean isAddressExisted(String addressName) {
         Boolean flag = Boolean.FALSE;
         for (WebElement webEle : addressesList) {
-            String s = SeleniumUtils.getTextWebElement(getAddressDetails(webEle).get(0)).toLowerCase();
+            String s = getTextWebElement(getAddressDetails(webEle).get(0)).toLowerCase();
             if (s.equals(addressName.toLowerCase())) {
                 flag = Boolean.TRUE;
             }
@@ -79,11 +78,11 @@ public class MyAddress extends BasePage {
         Boolean flag = Boolean.FALSE;
         for (WebElement webEle : addressesList) {
             List<WebElement> addressDetails = getAddressDetails(webEle);
-            String foundAddressName = SeleniumUtils.getTextWebElement(addressDetails.get(0)).toLowerCase();
+            String foundAddressName = getTextWebElement(addressDetails.get(0)).toLowerCase();
             if (foundAddressName.toLowerCase().equals(addressName.toLowerCase())) {
                 WebElement btnDelete = getDeleteButton(addressDetails.get(addressDetails.size()-1));
-                SeleniumUtils.clickElement(btnDelete);
-                SeleniumUtils.acceptAlert();
+                clickElement(btnDelete);
+                acceptAlert();
                 flag = Boolean.TRUE;
                 break;
             }
@@ -98,16 +97,16 @@ public class MyAddress extends BasePage {
         //Looking for address to be updated
         for (WebElement webEle : addressesList) {
             List<WebElement> addressDetails = getAddressDetails(webEle);
-            String foundAddressName = SeleniumUtils.getTextWebElement(addressDetails.get(0)).toLowerCase();
+            String foundAddressName = getTextWebElement(addressDetails.get(0)).toLowerCase();
             if (foundAddressName.toLowerCase().equals(addressName.toLowerCase())) {
                 WebElement btnUpdate = getUpdateButton(addressDetails.get(addressDetails.size()-1));
-                SeleniumUtils.clickElement(btnUpdate);
+                clickElement(btnUpdate);
                 //Updating
-                SeleniumUtils.enterText(address1, address1.getAttribute("value")+"Updated");
-                SeleniumUtils.enterText(city, city.getAttribute("value")+"Updated");
+                enterText(address1, address1.getAttribute("value")+"Updated");
+                enterText(city, city.getAttribute("value")+"Updated");
                 newAlias = alias.getAttribute("value")+"Updated";
-                SeleniumUtils.enterText(alias, newAlias);
-                SeleniumUtils.clickElement(submitAddressButton);
+                enterText(alias, newAlias);
+                clickElement(submitAddressButton);
                 break;
             }
         }
@@ -119,29 +118,29 @@ public class MyAddress extends BasePage {
         Boolean flag = isAddressExisted(dataAddress.get("alias"));
 
         if (!flag){
-            SeleniumUtils.clickElement(addAddressButton);
-            SeleniumUtils.enterText(address1, dataAddress.get("address1"));
-            SeleniumUtils.enterText(city, dataAddress.get("city"));
-            SeleniumUtils.clickElementForcefully(id_state);
+            clickElement(addAddressButton);
+            enterText(address1, dataAddress.get("address1"));
+            enterText(city, dataAddress.get("city"));
+            clickElementForcefully(id_state);
             for (WebElement webEle : state_options) {
-                String foundState = SeleniumUtils.getTextWebElement(webEle).toLowerCase();
+                String foundState = getTextWebElement(webEle).toLowerCase();
                 if (foundState.toLowerCase().equals(dataAddress.get("state_option").toLowerCase())) {
-                    SeleniumUtils.clickElement(webEle);
+                    clickElement(webEle);
                     break;
                 }
             }
-            SeleniumUtils.enterText(postcode, dataAddress.get("postcode"));
-            SeleniumUtils.clickElementForcefully(id_country);
+            enterText(postcode, dataAddress.get("postcode"));
+            clickElementForcefully(id_country);
             for (WebElement webEle : country_options) {
-                String foundCountry = SeleniumUtils.getTextWebElement(webEle).toLowerCase();
+                String foundCountry = getTextWebElement(webEle).toLowerCase();
                 if (foundCountry.toLowerCase().equals(dataAddress.get("country_option").toLowerCase())) {
-                    SeleniumUtils.clickElement(webEle);
+                    clickElement(webEle);
                     break;
                 }
             }
-            SeleniumUtils.enterText(phone, dataAddress.get("phone"));
-            SeleniumUtils.enterText(alias, dataAddress.get("alias"));
-            SeleniumUtils.clickElement(submitAddressButton);
+            enterText(phone, dataAddress.get("phone"));
+            enterText(alias, dataAddress.get("alias"));
+            clickElement(submitAddressButton);
         }
         return !flag;
     }
