@@ -1,14 +1,10 @@
 package com.automation.pageObjects;
 
+import static com.automation.utils.ElementUtils.*;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-
-    public LoginPage(WebDriver driver){
-        super(driver);
-    }
 
     @FindBy(id="email")
     public static WebElement loginEmailField;

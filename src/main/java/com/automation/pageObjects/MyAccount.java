@@ -7,10 +7,6 @@ import java.util.List;
 
 public class MyAccount extends BasePage {
 
-    public MyAccount(WebDriver driver){
-        super(driver);
-    }
-
     @FindBy(css="p.info-account")
     public static WebElement myaccountWelcome;
 

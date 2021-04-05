@@ -1,11 +1,12 @@
 package com.automation.stepDefinitions;
 
+import static com.automation.utils.ElementUtils.*;
 import static org.testng.AssertJUnit.*;
 import com.automation.pageObjects.*;
 import cucumber.api.java.en.*;
 import com.automation.env.Global;
 
-public class LoginStepDefinition extends utils {
+public class LoginStepDefinition {
 
     @Given("I have logged into Automation Practice")
     public void loginAutomationPractice() {

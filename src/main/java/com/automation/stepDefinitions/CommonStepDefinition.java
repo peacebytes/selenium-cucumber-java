@@ -1,10 +1,11 @@
 package com.automation.stepDefinitions;
 
+import static com.automation.utils.ElementUtils.*;
 import static org.testng.AssertJUnit.*;
 import com.automation.pageObjects.*;
 import cucumber.api.java.en.*;
 
-public class CommonStepDefinition extends utils {
+public class CommonStepDefinition {
 
     @Then("^I should \"([^\"]*)\" \"([^\"]*)\" button$")
     public void i_should_button(String arg1, String arg2) throws Throwable {

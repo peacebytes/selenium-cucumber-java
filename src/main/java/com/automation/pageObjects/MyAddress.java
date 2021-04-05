@@ -1,6 +1,6 @@
 package com.automation.pageObjects;
 
-import org.openqa.selenium.WebDriver;
+import static com.automation.utils.ElementUtils.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -8,10 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MyAddress extends BasePage {
-
-    public MyAddress(WebDriver driver){
-        super(driver);
-    }
 
     @FindBy(xpath="//a[@title='Add an address']")
     public static WebElement addAddressButton;

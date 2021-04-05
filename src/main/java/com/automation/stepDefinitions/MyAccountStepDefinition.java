@@ -1,10 +1,11 @@
 package com.automation.stepDefinitions;
 
+import static com.automation.utils.ElementUtils.*;
 import com.automation.pageObjects.*;
 import cucumber.api.java.en.*;
 import org.openqa.selenium.WebElement;
 
-public class MyAccountStepDefinition extends utils {
+public class MyAccountStepDefinition {
 
     @Then("I click My Account")
     public void i_click_myaccount() {

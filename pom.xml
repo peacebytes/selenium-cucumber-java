@@ -13,7 +13,6 @@
         <target.browser>${targetBrowser}</target.browser>
         <!--suppress UnresolvedMavenProperty -->
         <target.env>${targetEnv}</target.env>
-        <cucumber.version>1.2.5</cucumber.version>
     </properties>
     <repositories>
         <repository>
@@ -27,14 +26,14 @@
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>${cucumber.version}</version>
+            <version>4.8.0</version>
         </dependency>
         <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>${cucumber.version}</version>
+            <version>4.8.0</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -42,15 +41,11 @@
             <version>3.14.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.epam.reportportal/agent-java-cucumber5 -->
-<!--        <dependency>-->
-<!--            <groupId>com.epam.reportportal</groupId>-->
-<!--            <artifactId>agent-java-cucumber</artifactId>-->
-<!--            <version>5.0.1</version>-->
-<!--        </dependency>-->
-<!--        -->
-<!--         to solve this we might need to upgrade cucumber java and cucumber junit version -->
-<!--         see https://github.com/reportportal/agent-java-cucumber-->
-
+        <dependency>
+            <groupId>com.epam.reportportal</groupId>
+            <artifactId>agent-java-cucumber4</artifactId>
+            <version>4.1.1</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
@@ -80,7 +75,7 @@
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber.version}</version>
+            <version>1.2.5</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>

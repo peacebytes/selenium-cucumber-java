@@ -1,4 +1,4 @@
-package com.automation.pageObjects;
+package com.automation.utils;
 
 import com.automation.env.Global;
 import org.openqa.selenium.*;
@@ -7,11 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class utils {
-
-    public static void navigateToURL(String url) {
-        Global.driver.get(url);
-    }
+public class ElementUtils {
 
     public static void enterText(WebElement webElement, String textValue) {
         waitWebElementClickable(webElement).clear();
