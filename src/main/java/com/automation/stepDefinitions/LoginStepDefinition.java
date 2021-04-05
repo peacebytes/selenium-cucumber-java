@@ -1,19 +1,18 @@
 package com.automation.stepDefinitions;
 
+import static com.automation.utils.ElementUtils.*;
 import static org.testng.AssertJUnit.*;
 import com.automation.pageObjects.*;
 import cucumber.api.java.en.*;
-import com.automation.utils.SeleniumUtils;
+import com.automation.env.Global;
 
 public class LoginStepDefinition {
 
     @Given("I have logged into Automation Practice")
     public void loginAutomationPractice() {
-        SeleniumUtils.navigateToURL(Hooks.url);
-        SeleniumUtils.clickElement(LoginPage.loginElement);
-        LoginPage.login(Hooks.email, Hooks.password);
+        LoginPage.login(Global.email, Global.password);
         //assert log in was successful
-        String actualTextaccount= SeleniumUtils.getTextWebElement(LoginPage.accountElement);
+        String actualTextaccount= getTextWebElement(LoginPage.accountElement);
 
         System.out.println("actualTextaccount:");
         System.out.println(actualTextaccount);
@@ -22,9 +21,9 @@ public class LoginStepDefinition {
 
     @Then("I log out Automation Practice")
     public void i_log_out_Automation_Practice() {
-        SeleniumUtils.clickElement(LoginPage.logoutElement);
+        LoginPage.logout();
         //assert log out was successful
-        String actualTextalreadyRegistered = SeleniumUtils.getTextWebElement(LoginPage.alreadyRegistered);
+        String actualTextalreadyRegistered = getTextWebElement(LoginPage.alreadyRegistered);
         assertEquals(actualTextalreadyRegistered, "ALREADY REGISTERED?");
     }
 }

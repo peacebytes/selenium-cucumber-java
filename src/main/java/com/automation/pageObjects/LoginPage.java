@@ -1,15 +1,10 @@
 package com.automation.pageObjects;
 
+import static com.automation.utils.ElementUtils.*;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import com.automation.utils.SeleniumUtils;
 
 public class LoginPage extends BasePage {
-
-    public LoginPage(WebDriver driver){
-        super(driver);
-    }
 
     @FindBy(id="email")
     public static WebElement loginEmailField;
@@ -24,9 +19,13 @@ public class LoginPage extends BasePage {
     public static WebElement alreadyRegistered;
 
     public static void login(String email, String password) {
-        SeleniumUtils.enterText(loginEmailField, email);
-        SeleniumUtils.enterText(loginPasswordField, password);
-        SeleniumUtils.clickElement(buttonToLogin);
+        clickElement(loginElement);
+        enterText(loginEmailField, email);
+        enterText(loginPasswordField, password);
+        clickElement(buttonToLogin);
     }
 
+    public static void logout() {
+        clickElement(logoutElement);
+    }
 }

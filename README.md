@@ -10,6 +10,13 @@ Install dependencies and skip testing:
 ```
 mvn clean install -DskipTests=true
 ```
+
+## Quick compile & test
+Default caps for the test will be decided by properties file `src/main/resources/Config.properties`
+```
+mvn clean install
+```
+
 ## Execute tests in parallel in Selenium Grid
 
 Start selenium grid on local:
@@ -95,13 +102,36 @@ mvn test -Dtarget.env=bs -Dtarget.browser=chrome
 ```
 * Note: All test on Browserstack will be done on Windows 10.
 
-## Cucumber Reports
-Report can be found at `/target/cucumber/cucumber.html/index.html`
+## Report Portal integration
 
-## How report will look like in parallel tests?
-
-[Report Portal](https://reportportal.io/) integration will be our best bet. To be updated with integration of report portal to this Selenium Java framework.
-
+All test reports will be published in real-time to report portal.
 How to set up Report Portal can be found here: https://automationbytes.me/how-to-setup-report-portal
+
+Report Portal configuration will be kept at:
+```
+src/test/resources/reportportal.properties
+```
+
+Enabling StepReporter:
+```
+// file: src/test/java/com/automation/RunCukesTest.java
+@RunWith(Cucumber.class)
+@CucumberOptions(
+plugin = {"pretty", "com.epam.reportportal.cucumber.StepReporter"}
+)
+public class RunCukesTest {
+}
+```
+
+Enabling ScenarioReporter:
+```
+// file: src/test/java/com/automation/RunCukesTest.java
+@RunWith(Cucumber.class)
+@CucumberOptions(
+plugin = {"pretty", "com.epam.reportportal.cucumber.ScenarioReporter"}
+)
+public class RunCukesTest {
+}
+```
 
 More documentation at : `/docs`

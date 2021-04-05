@@ -4,16 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public abstract class BasePage {
-
-    public static WebDriver driver;
-    public static boolean bResult;
-
-    public  BasePage(WebDriver driver){
-        BasePage.driver = driver;
-        BasePage.bResult = true;
-    }
-
+public class BasePage {
      /*
      * Common WebElements that should be available to all Page Objects
      */
@@ -32,4 +23,6 @@ public abstract class BasePage {
 
     @FindBy(xpath="//a[@title='Manage my customer account']")
     public static WebElement myaccountElement;
+
+    // BasePage or CommonPage can have elements of headers and footers or common pop-up, alerts, calendar in system
 }
