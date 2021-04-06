@@ -4,6 +4,13 @@ This repository is an example of using Selenium Java to do automated functional 
 
 	• Website for testing: http://automationpractice.com
 
+Documentation can be found at `/docs':
+- How to set up Report Portal on local running on Docker container
+- How to set up Selenium Grid with Docker containers
+- How to set up env for this starter-kit project
+- How assertion is done in this project
+- How to use global variables
+
 ## Install dependencies
 
 Install dependencies and skip testing:
@@ -37,7 +44,7 @@ Run All Test (default.browser=chrome & default.env=local)
 mvn test
 ```
 
-Execute test against specific browser (Firefox) and env
+Execute test against a specific browser (Firefox) and env
 ```
 mvn test -Dtarget.browser=firefox -Dtarget.env=local
 ```
@@ -64,7 +71,7 @@ To have 4 instances of chrome headless, we have to start 2 chrome nodes (each ha
 docker-compose up -d --scale chrome=2
 ```
 
-See `pom.xml` > `<id>parallel</id>`, > `<forkCount>4</forkCount>`. By default, I set it to 4 for the purpose of demostration.
+Check `pom.xml` > `<id>parallel</id>`, > `<forkCount>4</forkCount>`. By default, I set it to 4 for the purpose of demostration.
 
 Compile code without execute test
 ```
@@ -78,7 +85,7 @@ cd ~/selenium-cucumber-java
 mvn test -Dcucumber.options='--tags @demo' -Pparallel
 ```
 
-Notes: Selenium Grid in this repo just only supports headless mode.
+Notes: Selenium Grid in this repo just only supports headless-mode.
 
 ## Execute test on Browserstack?
 
@@ -134,5 +141,3 @@ plugin = {"pretty", "com.epam.reportportal.cucumber.ScenarioReporter"}
 public class RunCukesTest {
 }
 ```
-
-More documentation at : `/docs`

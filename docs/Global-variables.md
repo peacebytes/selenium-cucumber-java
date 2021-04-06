@@ -1,6 +1,6 @@
 # How to deal with global variables?
 
-Create new global variable in Hooks.java at `com.automation.stepDefinitions.Hooks`
+Create new global variable in Hooks.java at `src/main/java/com/automation/env/Global.java`
 Example:
 ```
     //Global variables
@@ -13,4 +13,4 @@ Example:
     public static Integer timeout;
 ```
 
-Global variables to store test data generated during testing and can be shared within a test scenario. In step definition files, calling Hooks.{global_variable} directly to set or get value.
+Global variables to store test data generated during testing and can be shared within a test scenario. In step definition files, calling Global.{global_variable} directly to set or get value.
