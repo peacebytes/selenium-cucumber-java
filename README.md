@@ -1,6 +1,6 @@
-# Welcome to Selenium Java
+# Welcome to Selenium Java - Cucumber - Report Portal
 
-This repository is an example of using Selenium Java to do automated functional test of web application. Test executions can be done on local browsers, on Selenium Grid or on BrowserStack.
+This repository is an example of using Selenium Java to do automated functional test of web application. Test executions can be done on local browsers, on Selenium Grid or on BrowserStack. Test Reports will be published to report portal.
 
 	• Website for testing: http://automationpractice.com
 
@@ -17,32 +17,6 @@ Default caps for the test will be decided by properties file `src/main/resources
 mvn clean install
 ```
 
-## Execute tests in parallel in Selenium Grid
-
-Start selenium grid on local:
-```
-cd src/main/resources/docker-selenium-grid
-```
-To have 4 instances of chrome headless, we have to start 2 chrome nodes (each has 2 instance as set up in docker-compose.yml), the command will be like:
-```
-docker-compose up -d --scale chrome=2
-```
-
-Check `pom.xml` > `<id>parallel</id>`, > `<forkCount>4</forkCount>`. By default, I set it to 4 for the purpose of demostration.
-
-Compile code without execute test
-```
-cd ~/selenium-cucumber-java
-mvn clean install -DskipTests=true
-```
-
-Run test in parallel
-```
-cd ~/selenium-cucumber-java
-mvn test -Dcucumber.options='--tags @demo' -Pparallel
-```
-
-Notes: Selenium Grid in this repo just only supports headless mode.
 ## Execute tests on local
 
 Running test on local with real browser mode so you can see really what your tests are like.
@@ -78,6 +52,33 @@ Put `@skip` on top of feature files, then:
 ```
 mvn test
 ```
+
+## Execute tests in parallel in Selenium Grid
+
+Start selenium grid on local:
+```
+cd src/main/resources/docker-selenium-grid
+```
+To have 4 instances of chrome headless, we have to start 2 chrome nodes (each has 2 instance as set up in docker-compose.yml), the command will be like:
+```
+docker-compose up -d --scale chrome=2
+```
+
+See `pom.xml` > `<id>parallel</id>`, > `<forkCount>4</forkCount>`. By default, I set it to 4 for the purpose of demostration.
+
+Compile code without execute test
+```
+cd ~/selenium-cucumber-java
+mvn clean install -DskipTests=true
+```
+
+Run test in parallel
+```
+cd ~/selenium-cucumber-java
+mvn test -Dcucumber.options='--tags @demo' -Pparallel
+```
+
+Notes: Selenium Grid in this repo just only supports headless mode.
 
 ## Execute test on Browserstack?
 
