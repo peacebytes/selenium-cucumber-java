@@ -1,6 +1,6 @@
-# Welcome to Selenium Java
+# Welcome to Selenium Java - Cucumber - Report Portal
 
-This repository is an example of using Selenium Java to do automated functional test of web application. Test executions can be done on local browsers, on Selenium Grid or on BrowserStack.
+This repository is an example of using Selenium Java to do automated functional test of web application. Test executions can be done on local browsers, on Selenium Grid or on BrowserStack. Test Reports will be published to report portal.
 
 	• Website for testing: http://automationpractice.com
 
@@ -44,7 +44,7 @@ Run All Test (default.browser=chrome & default.env=local)
 mvn test
 ```
 
-Execute test against specific browser (Firefox) and env
+Execute test against a specific browser (Firefox) and env
 ```
 mvn test -Dtarget.browser=firefox -Dtarget.env=local
 ```
@@ -84,7 +84,8 @@ Run test in parallel
 cd ~/selenium-cucumber-java
 mvn test -Dcucumber.options='--tags @demo' -Pparallel
 ```
-Notes: Selenium Grid in this repo just only supports headless mode.
+
+Notes: Selenium Grid in this repo just only supports headless-mode.
 
 ## Execute test on Browserstack?
 
