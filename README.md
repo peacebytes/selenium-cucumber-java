@@ -4,6 +4,13 @@ This repository is an example of using Selenium Java to do automated functional 
 
 	• Website for testing: http://automationpractice.com
 
+Documentation can be found at `/docs':
+- How to set up Report Portal on local running on Docker container
+- How to set up Selenium Grid with Docker containers
+- How to set up env for this starter-kit project
+- How assertion is done in this project
+- How to use global variables
+
 ## Install dependencies
 
 Install dependencies and skip testing:
@@ -133,5 +140,3 @@ plugin = {"pretty", "com.epam.reportportal.cucumber.ScenarioReporter"}
 public class RunCukesTest {
 }
 ```
-
-More documentation at : `/docs`
