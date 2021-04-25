@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.automation.pageObjects.*;
 import com.automation.env.Global;
 
-public class Hooks {
+public class Hooks extends Global {
 
     @Before
     /**
@@ -16,32 +16,32 @@ public class Hooks {
      */
     public void openBrowser() {
         //Loading Test Data
-        Global.loadJsonData();
+        loadJsonData();
 
         //Loading config.properties
-        Global.loadProperties();
+        loadProperties();
 
         //Reading passing arguments from command line
-        Global.parseCommandLineArgs();
+        parseCommandLineArgs();
 
         //Set up WebDriver at the start of each scenario to avoid shared state between tests
         DriverFactory.createWebDriver();
 
         //Initialize all Page Objects
-        PageFactory.initElements(Global.driver, MyAccount.class);
-        PageFactory.initElements(Global.driver, LoginPage.class);
-        PageFactory.initElements(Global.driver, MyAddress.class);
+        PageFactory.initElements(driver, MyAccount.class);
+        PageFactory.initElements(driver, LoginPage.class);
+        PageFactory.initElements(driver, MyAddress.class);
 
         //Load UAT
-        Global.driver.get(Global.url);
+        driver.get(url);
     }
 
     @After
     public void closeBrowser(Scenario scenario) {
         try {
-            Global.driver.close();
+            driver.close();
           Thread.sleep(3000);
-            Global.driver.quit();
+            driver.quit();
         } catch (Exception e) {}
     }
 }
