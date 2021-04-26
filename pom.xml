@@ -25,7 +25,6 @@
         </repository>
     </repositories>
     <dependencies>
-        <!--
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -36,23 +35,22 @@
             <artifactId>cucumber-junit</artifactId>
             <version>1.2.5</version>
         </dependency>
-        -->
         <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>4.8.0</version>
+           <groupId>io.cucumber</groupId>
+           <artifactId>cucumber-java</artifactId>
+           <version>4.8.0</version>
         </dependency>
         <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>4.8.0</version>
+           <groupId>io.cucumber</groupId>
+           <artifactId>cucumber-junit</artifactId>
+           <version>4.8.0</version>
         </dependency>
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>3.14.0</version>
+           <groupId>org.seleniumhq.selenium</groupId>
+           <artifactId>selenium-java</artifactId>
+           <version>3.14.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.epam.reportportal/agent-java-cucumber5 -->
+               <!-- https://mvnrepository.com/artifact/com.epam.reportportal/agent-java-cucumber5 -->
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-cucumber4</artifactId>
@@ -102,27 +100,6 @@
           <build>
               <plugins>
                     <plugin>
-                      <groupId>com.github.temyers</groupId>
-                      <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                      <version>1.0.1</version>
-                      <executions>
-                          <execution>
-                              <id>generateRunners</id>
-                              <phase>validate</phase>
-                              <goals>
-                                  <goal>generateRunners</goal>
-                              </goals>
-                              <configuration>
-                                  <glue>com.automation.stepDefinitions</glue>
-                                  <featuresDirectory>src/test/resources/features</featuresDirectory>
-                                  <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
-                                  <format>json,html</format>
-                                  <tags>"~@skip"</tags>
-                              </configuration>
-                          </execution>
-                      </executions>
-                    </plugin>
-                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.22.1</version>
@@ -133,17 +110,6 @@
                                 <include>**/Parallel*IT.class</include>
                             </includes>
                             <useSystemClassLoader>false</useSystemClassLoader>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.2</version>
-                        <configuration>
-                            <encoding>UTF-8</encoding>
-                            <source>1.8</source>
-                            <target>1.8</target>
-                            <compilerArgument>-Werror</compilerArgument>
                         </configuration>
                     </plugin>
               </plugins>

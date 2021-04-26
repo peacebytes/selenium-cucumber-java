@@ -11,26 +11,26 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
 import java.net.MalformedURLException;
 
-public class DriverFactory {
+public class DriverFactory extends Global{
 
     public static void createWebDriver()
     {
-      switch(Global.env){
+      switch(env){
         case "bs":
-          setupBrowserStack(Global.browser);
+          setupBrowserStack(browser);
           break;
         case "grid":
-          setupRemoteWebDriver(Global.browser);
+          setupRemoteWebDriver(browser);
           break;
         default:
-          setupLocalWebDriver(Global.browser);
+          setupLocalWebDriver(browser);
           break;
           
       }
       //Delete all cookies at the start of each scenario to avoid shared state between tests
-      Global.driver.manage().deleteAllCookies();
-      Global.driver.manage().window().maximize();
-      Global.driver.manage().timeouts().pageLoadTimeout(Global.timeout, TimeUnit.SECONDS);
+      driver.manage().deleteAllCookies();
+      driver.manage().window().maximize();
+      driver.manage().timeouts().pageLoadTimeout(timeout, TimeUnit.SECONDS);
     }
 
     private static void setupBrowserStack(String browserType) {
@@ -44,7 +44,7 @@ public class DriverFactory {
       capabilities.setCapability("os_version", PropertyReader.readConfigProperties("os_version"));
       capabilities.setCapability("resolution", PropertyReader.readConfigProperties("resolution"));
       try {
-          Global.driver = new RemoteWebDriver(new URL(targetURL), capabilities);
+          driver = new RemoteWebDriver(new URL(targetURL), capabilities);
       } catch (MalformedURLException ex) {
           System.out.println(ex.getMessage());
       }
@@ -55,13 +55,13 @@ public class DriverFactory {
         case "headless":
             ChromeOptions chrome_options = new ChromeOptions();
             chrome_options.addArguments("--headless");
-            Global.driver = new ChromeDriver(chrome_options);
+            driver = new ChromeDriver(chrome_options);
             break;
         case "chrome":
-            Global.driver = new ChromeDriver();
+            driver = new ChromeDriver();
             break;
         case "firefox":
-            Global.driver = new FirefoxDriver();
+            driver = new FirefoxDriver();
             break;
       }
     }
@@ -85,7 +85,7 @@ public class DriverFactory {
           break;
       }
       try {
-          Global.driver = new RemoteWebDriver(new URL(targetURL), capabilities);
+          driver = new RemoteWebDriver(new URL(targetURL), capabilities);
       } catch (MalformedURLException ex) {
           System.out.println(ex.getMessage());
       }
