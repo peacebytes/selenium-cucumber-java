@@ -26,16 +26,6 @@
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>1.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>1.2.5</version>
-        </dependency>
-        <dependency>
            <groupId>io.cucumber</groupId>
            <artifactId>cucumber-java</artifactId>
            <version>4.8.0</version>
@@ -99,35 +89,38 @@
           <id>parallel</id>
           <build>
               <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.22.1</version>
-                        <configuration>
-                            <forkCount>4</forkCount>
-                            <reuseForks>true</reuseForks>
-                            <includes>
-                                <include>**/Parallel*IT.class</include>
-                            </includes>
-                            <useSystemClassLoader>false</useSystemClassLoader>
-                        </configuration>
-                    </plugin>
-              </plugins>
-          </build>
-      </profile>
-      <profile>
-        <id>serial</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
-        <build>
-            <plugins>
+                  <plugin>
+                      <groupId>com.github.temyers</groupId>
+                      <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                      <version>2.1.0</version>
+                      <executions>
+                          <execution>
+                              <id>generateRunners</id>
+                              <phase>validate</phase>
+                              <goals>
+                                  <goal>generateRunners</goal>
+                              </goals>
+                              <configuration>
+                                  <glue>com.automation.stepDefinitions</glue>
+                                  <featuresDirectory>src/test/resources/features</featuresDirectory>
+                                  <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
+                                  <format>json,html</format>
+                                  <tags>"~@skip"</tags>
+                              </configuration>
+                          </execution>
+                      </executions>
+                  </plugin>
                   <plugin>
                       <groupId>org.apache.maven.plugins</groupId>
                       <artifactId>maven-surefire-plugin</artifactId>
                       <version>2.22.1</version>
                       <configuration>
-                            <useSystemClassLoader>false</useSystemClassLoader>
+                          <forkCount>4</forkCount>
+                          <reuseForks>true</reuseForks>
+                          <includes>
+                              <include>**/Parallel*IT.class</include>
+                          </includes>
+                          <useSystemClassLoader>false</useSystemClassLoader>
                       </configuration>
                   </plugin>
                   <plugin>
@@ -141,7 +134,35 @@
                           <compilerArgument>-Werror</compilerArgument>
                       </configuration>
                   </plugin>
-
+              </plugins>
+          </build>
+      </profile>
+      <profile>
+        <id>serial</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>3.2</version>
+                  <configuration>
+                      <encoding>UTF-8</encoding>
+                      <source>1.8</source>
+                      <target>1.8</target>
+                      <compilerArgument>-Werror</compilerArgument>
+                  </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.1</version>
+                    <configuration>
+                        <useSystemClassLoader>false</useSystemClassLoader>
+                    </configuration>
+                </plugin>
             </plugins>
         </build>
       </profile>
